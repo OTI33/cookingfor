@@ -2,7 +2,7 @@ document.getElementById('add-row-button').addEventListener('click', function () 
 	const tbody = document.querySelector('table tbody');
 	const rowCount = tbody.rows.length;
 
-	// 最大30行まで追加できる（デフォルト5行だから、25行追加可能）
+	// 最大30行まで追加できる
 	if (rowCount < 30) {
 		const newRow = document.createElement('tr');
 		const columns = ['materialname', 'hon', 'eq2', 'eq3', 'eq4', 'grams', 'ko'];
@@ -48,7 +48,7 @@ document.getElementById('add-step-button').addEventListener('click', function ()
 	const stepsDiv = document.getElementById('steps');
 	const stepCount = stepsDiv.getElementsByTagName('h4').length;
 
-	// 最大30個まで追加できる（デフォルト10個だから、20個追加可能）
+	// 最大30個まで追加できる
 	if (stepCount < 30) {
 		const newH4 = document.createElement('h4');
 		newH4.textContent = stepCount + 1;

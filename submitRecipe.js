@@ -14,10 +14,10 @@ document.addEventListener("DOMContentLoaded", function () {
             const reader = new FileReader();
             promises.push(new Promise((resolve) => {
                 reader.onloadend = function () {
-                    formData.recipeimage = reader.result.split(',')[1]; // Base64にエンコードされたデータを取得
+                    formData.recipeimage = reader.result.split(',')[1];
                     resolve();
                 };
-                reader.readAsDataURL(file); // Base64エンコード
+                reader.readAsDataURL(file);
             }));
         } else {
             formData.recipeimage = "0";
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function sendFormData(formData) {
-    const url = "http://localhost:3000/your-endpoint"; // Node.jsサーバーのエンドポイント
+    const url = "http://localhost:3000/your-endpoint";
 
     fetch(url, {
         method: 'POST',

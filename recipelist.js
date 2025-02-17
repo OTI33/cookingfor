@@ -4,13 +4,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // サーバー経由でレシピデータを取得
     function fetchRecipes() {
-        fetch('/fetch-sheets-data')  // サーバーのエンドポイントを呼び出す
+        fetch('/fetch-sheets-data')
             .then(response => response.json())
             .then(data => {
-                const recipeList = data;  // サーバーから受け取ったレシピデータ
+                const recipeList = data;
                 const selectedGenre = genreSelect.value;
 
-                recipeListContainer.innerHTML = ''; // 初期化
+                recipeListContainer.innerHTML = '';
 
                 // レシピをジャンルでフィルタリング
                 recipeList.forEach((recipe, index) => {
