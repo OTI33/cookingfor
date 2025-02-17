@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/mainstyle.css">
+	<link rel="stylesheet" href="css/inputstyle.css">
+	<title>クキンフォー--お買い物リストを作る--</title>
+</head>
+
+<body>
+	<header>
+		<h1><a href="/index.html"><img src="images/visual/logo.png" alt="cookingfor" id="top"></a></h1>
+		<p>
+			クキンフォーでお買い物革命！
+		</p>
+		<form id="search-form" action="search_results.html" method="get">
+			<input type="text" id="search-box" name="q" placeholder="レシピを検索..." required>
+			<button type="submit">検索</button>
+		</form>
+		<nav>
+			<ul>
+				<li><a href="recipelist.html">レシピ一覧</a></li>
+				<li><a href="recipeinput.html">レシピを投稿する</a></li>
+			</ul>
+		</nav>
+	</header>
+	<div id="pan">
+		<ul>
+			<li><a href="/index.html">HOME</a></li>
+			<li>お買い物リストを作る</li>
+		</ul>
+	</div>
+	<div id="contents">
+		<div id="main">
+			<article>
+				<div>
+					<h2>レシピリスト</h2>
+
+
+
+					<h2>お買い物リスト</h2>
+
+					
+				</div>
+
+				<div id="recipeList"></div>
+
+
+
+			</article>
+		</div>
+		<div id="sub">
+			<aside>
+
+			</aside>
+		</div>
+	</div>
+	<footer>
+		<p>&copy; 2025 クキンフォー All rights reserved.</p>
+		<a href="#top" id="top-link">▲topに戻る</a>
+	</footer>
+	<script src="recipelist.js"></script>
+</body>
+
+</html>

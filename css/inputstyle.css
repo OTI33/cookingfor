@@ -1,0 +1,122 @@
+@charset "utf-8";
+
+
+#contents {
+	margin-left: 280px;
+}
+
+h2 {
+	margin: 50px 0 50px 45px;
+	font-size: 30px;
+}
+
+#recipenameinput {
+	margin-left: 80px;
+}
+
+input[name="recipename"] {
+	width: 30%;
+	padding: 9px;
+    font-size: 1rem;
+    border: 3px solid #0097b2;
+    border-radius: 10px;
+    flex-grow: 1;
+	margin-right: 20px;
+}
+
+#genreinput {
+	margin-left: 80px;
+}
+
+#materialinput {
+	margin-left: 80px;
+}
+
+table {
+    width: 50%;
+	margin-left: 0px;
+    border-collapse: collapse;
+	text-align: left;
+}
+
+th, td {
+	width: 70px;
+    padding: 5px;
+    text-align: center;
+    border: 2px solid #0097b2;
+    background-color: #add8e0;
+    font-size: 0.9rem;
+}
+
+th {
+    background-color: #fff;
+	color: #000;
+    font-weight: bold;
+}
+
+td input, td select {
+    padding: 5px;
+    width: 50px;
+    border: 1px solid #0097b2;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+td input[type="text"] {
+    padding: 3px;
+}
+
+td input[name^="materialname"] {
+    width: 200px;
+}
+
+th#materialname {
+    width: 200px;
+}
+
+#add-row-button {
+	margin-top: 20px;
+}
+
+#steps {
+	margin-left: 80px;
+}
+
+#steps h4 {
+	margin-left: 20px;
+}
+
+#steps textarea {
+	margin-left: 20px;
+	width: 500px;
+	height: 100px;
+	border: 3px solid #0097b2;
+	border-radius: 10px;
+}
+
+#add-step-button {
+	margin-left: 100px;
+	margin-top: 20px;
+}
+
+#submit {
+	display: block;
+	padding: 20px;
+	border-radius: 30px;
+	margin: 50px auto 50px 400px;
+}
+
+#confirmationMessage {
+    margin-top: 150px;
+    margin-left: 380px;
+    margin-bottom: 100px;
+}
+
+#confirmationMessage p {
+    font-weight: bold;
+    margin-bottom: 80px;
+}
+
+#confirmationMessage a {
+    margin-left: 35px;
+}

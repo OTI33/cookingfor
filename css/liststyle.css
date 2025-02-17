@@ -1,0 +1,16 @@
+@charset "utf-8";
+
+#recipeList {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.recipe-item img {
+    width: 100%;
+    height: auto;
+}
+
+.recipe-item h3 {
+    text-align: center;
+}
