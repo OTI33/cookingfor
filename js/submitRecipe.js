@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function sendFormData(formData) {
-    const url = "http://localhost:3000/your-endpoint";
+const url = "https://h474hf-8800.csb.app/your-endpoint";
 
     fetch(url, {
         method: 'POST',
