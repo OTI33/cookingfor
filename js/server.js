@@ -70,7 +70,6 @@ app.post('/your-endpoint', async (req, res) => {
     }
 });
 
-// 環境変数 PORT が設定されていればそのポートでリッスンし、設定されていなければデフォルトで3000番ポートを使用
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}/`);
