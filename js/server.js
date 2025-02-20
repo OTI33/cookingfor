@@ -59,7 +59,7 @@ app.get('/fetch-sheets-data', async (req, res) => {
 // Google Apps Scriptに送信
 app.post('/your-endpoint', async (req, res) => {
     try {
-        const gasUrl = 'https://script.google.com/macros/s/AKfycbxREoaOi5i2q1_TYUNug75XBwmPjzFwbc8l--asLaMrRymA9U_T6Cx_y8S25T8BxUdEag/exec';
+        const gasUrl = 'https://script.google.com/macros/s/AKfycbwTSGLTVJsnvu3Tib7-1CPY2CQy-eozrU2JEYLdE5IvlCP6b4mwz-aoScHcVjDed9-_mA/exec';
 
         const response = await axios.post(gasUrl, req.body);
 
