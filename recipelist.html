@@ -1,67 +1,68 @@
 ﻿<!DOCTYPE html>
 <html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/mainstyle.css" />
+    <link rel="stylesheet" href="css/inputstyle.css" />
+    <title>クキンフォー--レシピ一覧--</title>
+  </head>
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="css/mainstyle.css">
-	<link rel="stylesheet" href="css/inputstyle.css">
-	<title>クキンフォー--レシピ一覧--</title>
-</head>
+  <body>
+    <header>
+      <h1>
+        <a href="/index.html"
+          ><img src="images/visual/logo.png" alt="cookingfor" id="top"
+        /></a>
+      </h1>
+      <p>クキンフォーでお買い物革命！</p>
+      <form id="search-form" action="search_results.html" method="get">
+        <input
+          type="text"
+          id="search-box"
+          name="q"
+          placeholder="レシピを検索..."
+          required
+        />
+        <button type="submit">検索</button>
+      </form>
+      <nav>
+        <ul>
+          <li><a href="listmake.html">お買い物リストを作る</a></li>
+          <li><a href="recipeinput.html">レシピを投稿する</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div id="pan">
+      <ul>
+        <li><a href="/index.html">HOME</a></li>
+        <li>レシピ一覧</li>
+      </ul>
+    </div>
+    <div id="contents">
+      <div id="main">
+        <article>
+          <div>
+            <h2>ジャンルを選択</h2>
+            <select id="genreSelect">
+              <option value="all">すべて</option>
+              <option value="1" id="genre1">おかず</option>
+              <option value="2" id="genre2">おつまみ</option>
+              <option value="3" id="genre3">スイーツ</option>
+            </select>
+          </div>
 
-<body>
-	<header>
-		<h1><a href="/index.html"><img src="images/visual/logo.png" alt="cookingfor" id="top"></a></h1>
-		<p>
-			クキンフォーでお買い物革命！
-		</p>
-		<form id="search-form" action="search_results.html" method="get">
-			<input type="text" id="search-box" name="q" placeholder="レシピを検索..." required>
-			<button type="submit">検索</button>
-		</form>
-		<nav>
-			<ul>
-				<li><a href="listmake.html">お買い物リストを作る</a></li>
-				<li><a href="recipeinput.html">レシピを投稿する</a></li>
-			</ul>
-		</nav>
-	</header>
-	<div id="pan">
-		<ul>
-			<li><a href="/index.html">HOME</a></li>
-			<li>レシピ一覧</li>
-		</ul>
-	</div>
-	<div id="contents">
-		<div id="main">
-			<article>
-				<div>
-					<h2>ジャンルを選択</h2>
-					<select id="genreSelect">
-						<option value="all">すべて</option>
-						<option value="1" id="genre1">おかず</option>
-						<option value="2" id="genre2">おつまみ</option>
-						<option value="3" id="genre3">スイーツ</option>
-					</select>
-				</div>
-
-				<div id="recipeList"></div>
-
-
-
-			</article>
-		</div>
-		<div id="sub">
-			<aside>
-
-			</aside>
-		</div>
-	</div>
-	<footer>
-		<p>&copy; 2025 クキンフォー All rights reserved.</p>
-		<a href="#top" id="top-link">▲topに戻る</a>
-	</footer>
-	<script src="js/recipelist.js"></script>
-</body>
-
+          <div id="recipeList"></div>
+        </article>
+      </div>
+      <div id="sub">
+        <aside></aside>
+      </div>
+    </div>
+    <footer>
+      <p>&copy; 2025 クキンフォー All rights reserved.</p>
+      <a href="#top" id="top-link">▲topに戻る</a>
+    </footer>
+    <script src="js/recipelist.js"></script>
+  </body>
 </html>
