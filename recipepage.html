@@ -2,126 +2,55 @@
 <html lang="ja">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="css/mainstyle.css">
-	<link rel="stylesheet" href="css/inputstyle.css">
-	<title>クキンフォー--レシピ詳細--</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/mainstyle.css">
+  <link rel="stylesheet" href="css/inputstyle.css">
+  <title>クキンフォー--レシピ詳細--</title>
 </head>
 
 <body>
-	<header>
-		<h1><a href="/index.html"><img src="images/visual/logo.png" alt="cookingfor" id="top"></a></h1>
-		<p>
-			クキンフォーでお買い物革命！
-		</p>
-		<form id="search-form" action="search_results.html" method="get">
-			<input type="text" id="search-box" name="q" placeholder="レシピを検索..." required>
-			<button type="submit">検索</button>
-		</form>
-		<nav>
-			<ul>
-				<li><a href="recipelist.html">レシピ一覧</a></li>
-				<li><a href="listmake.html">お買い物リストを作る</a></li>
-				<li><a href="recipeinput.html">レシピを投稿する</a></li>
-			</ul>
-		</nav>
-	</header>
-	<div id="pan">
-		<ul>
-			<li><a href="/index.html">HOME</a></li>
-			<li><a href="recipelist.html">レシピ一覧</a></li>
-			<li>レシピ詳細</li>
-		</ul>
-	</div>
-	<div id="contents">
-		<div id="main">
-			<article>
-				<div id="recipe-details">
-					<h2 id="recipe-name">レシピ名</h2>
-					<img id="recipe-image" src="" alt="レシピ画像" style="width: 300px; height: 300px;">
-					<p id="recipe-description">レシピの詳細説明...</p>
+  <header>
+    <h1><a href="/index.html"><img src="images/visual/logo.png" alt="cookingfor" id="top"></a></h1>
+    <p>クキンフォーでお買い物革命！</p>
+    <form id="search-form" action="search_results.html" method="get">
+      <input type="text" id="search-box" name="q" placeholder="レシピを検索..." required>
+      <button type="submit">検索</button>
+    </form>
+    <nav>
+      <ul>
+        <li><a href="recipelist.html">レシピ一覧</a></li>
+        <li><a href="listmake.html">お買い物リストを作る</a></li>
+        <li><a href="recipeinput.html">レシピを投稿する</a></li>
+      </ul>
+    </nav>
+  </header>
 
-				</div>
-			</article>
-		</div>
-		<div id="sub">
-			<aside>
+  <div id="pan">
+    <ul>
+      <li><a href="/index.html">HOME</a></li>
+      <li><a href="recipelist.html">レシピ一覧</a></li>
+      <li>レシピ詳細</li>
+    </ul>
+  </div>
 
-			</aside>
-		</div>
-	</div>
-	<footer>
-		<p>&copy; 2025 クキンフォー All rights reserved.</p>
-		<a href="#top" id="top-link">▲topに戻る</a>
-	</footer>
+  <div id="contents">
+    <div id="main">
+      <article>
+        <div id="recipe-details">
+          <h2 id="recipe-name">レシピ名</h2>
+          <img id="recipe-image" src="" alt="レシピ画像" style="width: 300px; height: 300px;">
+          <p id="recipe-description">レシピの詳細説明...</p>
+        </div>
+      </article>
+    </div>
+  </div>
 
-	<script>
-		document.addEventListener("DOMContentLoaded", function () {
-			// クエリパラメータからレシピのインデックスを取得
-			const urlParams = new URLSearchParams(window.location.search);
-			const recipeIndex = urlParams.get('recipe');
-
-			const sheetId = process.env.GOOGLE_SHEET_ID;
-			const apiKey = process.env.GOOGLE_API_KEY;
-
-			// Google Sheets API からデータを取得
-			fetch(`https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Sheet1?key=${apiKey}`)
-				.then(response => response.json())
-				.then(data => {
-					const recipe = data.values[recipeIndex];
-
-					// レシピの情報をページに表示
-					document.getElementById('recipe-name').textContent = recipe[1];
-					document.getElementById('recipe-image').src = recipe[3];
-					document.getElementById('recipe-description').textContent = recipe.slice(4).join(', ');
-				})
-				.catch(error => {
-					console.error('Error:', error);
-				});
-		});
-	</script>
-</body>
-
-</html>
-
-	<script>
-    const sheetId = process.env.GOOGLE_SHEET_ID;
-    const apiKey = process.env.GOOGLE_API_KEY;
-
-		// APIリクエストを送信してデータを取得
-		fetch(`https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Sheet1?key=${apiKey}`)
-			.then(response => response.json())
-			.then(data => {
-				const recipeList = data.values;
-				const recipeListContainer = document.getElementById('recipe-list');
-				recipeListContainer.innerHTML = '';
-
-				// レシピデータを表示
-				recipeList.forEach((recipe, index) => {
-					
-					const filteredRecipe = recipe.filter(item => item !== "0" && item !== "");
-
-					
-					if (filteredRecipe.length > 0) {
-						const recipeElement = document.createElement('div');
-						recipeElement.classList.add('recipe');
-						recipeElement.innerHTML = `
-					<h3>レシピ ${index + 1}</h3>
-					<p>名前: ${filteredRecipe[1] || 'N/A'}</p>  <!-- レシピ名 -->
-					<p>ジャンル: ${filteredRecipe[2] || 'N/A'}</p>  <!-- ジャンル -->
-					<p>材料1: ${filteredRecipe[4] || 'N/A'}</p>  <!-- 材料1 -->
-					<p>手順1: ${filteredRecipe[9] || 'N/A'}</p>  <!-- 手順1 -->
-					<p>画像: <img src="${filteredRecipe[3] || ''}" alt="Recipe Image" style="width: 100px; height: 100px;"></p> <!-- 画像 -->
-				`;
-						recipeListContainer.appendChild(recipeElement);
-					}
-				});
-			})
-			.catch(error => {
-				console.error('Error:', error);
-			});
-	</script>
+  <footer>
+    <p>&copy; 2025 クキンフォー All rights reserved.</p>
+    <a href="#top" id="top-link">▲topに戻る</a>
+  </footer>
+  <script src="js/recipepage.js"></script>
 </body>
 
 </html>
