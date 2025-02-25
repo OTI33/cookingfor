@@ -1,16 +1,69 @@
 @charset "utf-8";
 
+#contents {
+  margin: 0 280px;
+}
+
+h2 {
+  margin: 50px 0 50px 45px;
+  font-size: 30px;
+}
+
 #recipeList {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2列表示 */
+  gap: 20px;
+  padding: 20px;
+}
+
+.recipe-item {
+  border: 1px solid #ddd;
+  padding: 15px;
+  text-align: center;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  width: 90%; /* レシピアイテムの幅を小さくする */
+  display: flex;
+  flex-direction: column; /* 画像とボタンを縦に並べる */
+  align-items: center; /* アイテムを中央に配置 */
+}
+
+.recipe-item:hover {
+  transform: translateY(-5px);
 }
 
 .recipe-item img {
-    width: 100%;
-    height: auto;
+  width: 322px; /* 横幅を2倍のサイズに変更 */
+  height: 200px; /* 高さも2倍に変更 */
+  object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 10px; /* 画像とボタンの間に余白を追加 */
 }
 
 .recipe-item h3 {
-    text-align: center;
+  font-size: 1.2em;
+  margin: 10px 0;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #0097b2;
+  border: 3px solid #ffde59;
+  color: white;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #fff;
+  color: #0097b2;
+}
+
+.current-page {
+  font-weight: bold;
+  background-color: #fff;
+  color: #0097b2;
+  cursor: default;
 }

@@ -52,7 +52,7 @@ app.get("/fetch-sheets-data", async (req, res) => {
       recipeimage: recipe[3],
     }));
 
-    // 新しい順に並べ替え
+    // レシピデータを降順にソート（新しい順）
     recipes.reverse();
 
     res.json(recipes);
@@ -73,11 +73,27 @@ app.get("/get-image/:fileId", async (req, res) => {
     });
     const contentType = response.headers["content-type"];
 
+    // 画像データをクライアントに返す
     res.set("Content-Type", contentType);
     res.send(response.data);
   } catch (error) {
     console.error("Error fetching image from Google Drive:", error);
     res.status(500).send("Error fetching image");
+  }
+});
+
+// Google Apps Scriptに送信
+app.post("/your-endpoint", async (req, res) => {
+  try {
+    const gasUrl =
+      "https://script.google.com/macros/s/AKfycbwPpBMWgClzPZQb2gxfb1dLGnYW9sYMsW1LgZLxfxmfCcJvqlNhiQb4jZZ4Vyhom3LBLA/exec";
+
+    const response = await axios.post(gasUrl, req.body);
+
+    res.json({ status: "success", data: response.data });
+  } catch (error) {
+    console.error("Error sending data to GAS:", error.response ? error.response.data : error.message);
+    res.status(500).json({ status: "error", message: error.message });
   }
 });
 
