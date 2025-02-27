@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/mainstyle.css">
-  <link rel="stylesheet" href="css/inputstyle.css">
-  <title>クキンフォー--レシピ詳細--</title>
+  <link rel="stylesheet" href="css/recipepage.css">
+  <title>レシピ詳細</title>
 </head>
 
 <body>
@@ -17,13 +17,6 @@
       <input type="text" id="search-box" name="q" placeholder="レシピを検索..." required>
       <button type="submit">検索</button>
     </form>
-    <nav>
-      <ul>
-        <li><a href="recipelist.html">レシピ一覧</a></li>
-        <li><a href="listmake.html">お買い物リストを作る</a></li>
-        <li><a href="recipeinput.html">レシピを投稿する</a></li>
-      </ul>
-    </nav>
   </header>
 
   <div id="pan">
@@ -39,8 +32,25 @@
       <article>
         <div id="recipe-details">
           <h2 id="recipe-name">レシピ名</h2>
-          <img id="recipe-image" src="" alt="レシピ画像" style="width: 300px; height: 300px;">
-          <p id="recipe-description">レシピの詳細説明...</p>
+          <img id="recipe-image" src="" alt="レシピ画像" class="recipe-image" />
+          
+          <!-- 材料セクション -->
+          <div id="recipe-ingredients-section">
+            <h3>材料</h3>
+            <ul id="recipe-ingredients">
+              <!-- 材料がここに表示されます -->
+            </ul>
+          </div>
+
+          <!-- 工程セクション -->
+          <div id="recipe-steps-section">
+            <h3>工程</h3>
+            <ul id="recipe-steps">
+              <!-- 工程がここに表示されます -->
+            </ul>
+          </div>
+
+          <p id="recipe-description">レシピの詳細説明がありません</p>
         </div>
       </article>
     </div>
@@ -50,6 +60,7 @@
     <p>&copy; 2025 クキンフォー All rights reserved.</p>
     <a href="#top" id="top-link">▲topに戻る</a>
   </footer>
+
   <script src="js/recipepage.js"></script>
 </body>
 

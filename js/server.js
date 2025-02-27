@@ -55,7 +55,13 @@ app.get("/fetch-sheets-data", async (req, res) => {
     // レシピデータを降順にソート（新しい順）
     recipes.reverse();
 
-    res.json(recipes);
+    // インデックスを降順に振りなおす
+    const recipesWithNewIndex = recipes.map((recipe, index) => ({
+      ...recipe,
+      newIndex: recipes.length - 1 - index,  // 降順でインデックスを付与
+    }));
+
+    res.json(recipesWithNewIndex);
   } catch (error) {
     console.error("Error fetching data from Google Sheets:", error);
     res.status(500).json({ error: error.message });
@@ -65,6 +71,12 @@ app.get("/fetch-sheets-data", async (req, res) => {
 // Googleドライブの画像を取得するエンドポイント
 app.get("/get-image/:fileId", async (req, res) => {
   const fileId = req.params.fileId;
+
+  if (!fileId) {
+    // ファイルIDが無い場合は、デフォルトの画像を返す
+    return res.sendFile(path.join(__dirname, "path/to/default-image.jpg"));
+  }
+
   const googleDriveUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
 
   try {
@@ -73,7 +85,6 @@ app.get("/get-image/:fileId", async (req, res) => {
     });
     const contentType = response.headers["content-type"];
 
-    // 画像データをクライアントに返す
     res.set("Content-Type", contentType);
     res.send(response.data);
   } catch (error) {
@@ -82,18 +93,32 @@ app.get("/get-image/:fileId", async (req, res) => {
   }
 });
 
-// Google Apps Scriptに送信
-app.post("/your-endpoint", async (req, res) => {
+// レシピ詳細情報を取得するエンドポイント
+app.get("/get-recipe/:recipeIndex", async (req, res) => {
+  const sheetId = process.env.GOOGLE_SHEET_ID;
+  const apiKey = process.env.GOOGLE_API_KEY;
+  const recipeIndex = req.params.recipeIndex;
+
   try {
-    const gasUrl =
-      "https://script.google.com/macros/s/AKfycbwPpBMWgClzPZQb2gxfb1dLGnYW9sYMsW1LgZLxfxmfCcJvqlNhiQb4jZZ4Vyhom3LBLA/exec";
+    const response = await axios.get(
+      `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/recipedata?key=${apiKey}`
+    );
 
-    const response = await axios.post(gasUrl, req.body);
+    if (response.data.error) {
+      return res.status(400).json({ error: response.data.error });
+    }
 
-    res.json({ status: "success", data: response.data });
+    const recipeData = response.data.values[parseInt(recipeIndex) + 1]; // ヘッダーがあるので+1
+    const recipe = {
+      recipename: recipeData[1],
+      recipeimage: recipeData[3],
+      recipeingredients: recipeData.slice(4).join(", "),
+    };
+
+    res.json(recipe);
   } catch (error) {
-    console.error("Error sending data to GAS:", error.response ? error.response.data : error.message);
-    res.status(500).json({ status: "error", message: error.message });
+    console.error("Error fetching recipe from Google Sheets:", error);
+    res.status(500).json({ error: error.message });
   }
 });
 

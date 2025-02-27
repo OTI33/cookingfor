@@ -9,6 +9,14 @@ h2 {
   font-size: 30px;
 }
 
+#genreSelect {
+  margin-left: 50px;
+  padding: 5px 20px;
+  border: 1px solid #0097b2;
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
+
 #recipeList {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* 2列表示 */
@@ -35,8 +43,8 @@ h2 {
 }
 
 .recipe-item img {
-  width: 322px; /* 横幅を2倍のサイズに変更 */
-  height: 200px; /* 高さも2倍に変更 */
+  width: 322px;
+  height: 200px;
   object-fit: cover;
   border-radius: 5px;
   margin-bottom: 10px; /* 画像とボタンの間に余白を追加 */
@@ -66,4 +74,16 @@ button:hover {
   background-color: #fff;
   color: #0097b2;
   cursor: default;
+}
+
+.no-image {
+  width: 322px;
+  height: 200px;
+  background-color: lightgray;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: bold;
 }

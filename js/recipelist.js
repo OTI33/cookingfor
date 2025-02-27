@@ -25,18 +25,24 @@ document.addEventListener("DOMContentLoaded", function () {
         const selectedGenre = genreSelect.value; // 選択されたジャンル
 
         // ジャンルフィルタリング
-        const filteredRecipes = selectedGenre === "all" 
-          ? recipeList 
-          : recipeList.filter((recipe) => parseInt(recipe.genre) === parseInt(selectedGenre));
+        const filteredRecipes =
+          selectedGenre === "all"
+            ? recipeList
+            : recipeList.filter(
+                (recipe) => parseInt(recipe.genre) === parseInt(selectedGenre)
+              );
 
         // ページネーション用にレシピを分ける
         const totalPages = Math.ceil(filteredRecipes.length / recipesPerPage);
-        const startIndex = (currentPage - 1) * recipesPerPage;
-        const paginatedRecipes = filteredRecipes.slice(startIndex, startIndex + recipesPerPage);
+        const startIndex = (currentPage - 1) * recipesPerPage; // startIndex をここで定義
+        const paginatedRecipes = filteredRecipes.slice(
+          startIndex,
+          startIndex + recipesPerPage
+        );
 
         recipeListContainer.innerHTML = "";
         paginatedRecipes.forEach((recipe, index) => {
-          displayRecipe(recipe, index);
+          displayRecipe(recipe, startIndex + index); // 修正: indexに基づいてレシピを表示
         });
 
         // ページネーションの更新
@@ -53,15 +59,25 @@ document.addEventListener("DOMContentLoaded", function () {
   // レシピを表示
   function displayRecipe(recipe, index) {
     const recipename = recipe.recipename;
-    const recipeimage = recipe.recipeimage === "0" ? "No Image" : convertGoogleDriveUrl(recipe.recipeimage);
-
     const recipeElement = document.createElement("div");
     recipeElement.classList.add("recipe-item");
-    recipeElement.innerHTML = `
-      <h3>${recipename}</h3>
-      <img src="${recipeimage}" alt="Recipe Image">
-      <button onclick="window.location.href='recipepage.html?recipe=${index}'">レシピを見る</button>
-    `;
+
+    // 画像があるかどうかで表示を切り替え
+    if (recipe.recipeimage === "0") {
+      recipeElement.innerHTML = `
+        <h3>${recipename}</h3>
+        <div class="no-image">No Image</div>
+        <button onclick="window.location.href='recipepage.html?recipe=${recipe.newIndex}'">レシピを見る</button>
+      `;
+    } else {
+      const recipeimage = convertGoogleDriveUrl(recipe.recipeimage);
+      recipeElement.innerHTML = `
+        <h3>${recipename}</h3>
+        <img src="${recipeimage}" alt="Recipe Image">
+        <button onclick="window.location.href='recipepage.html?recipe=${recipe.newIndex}'">レシピを見る</button>
+      `;
+    }
+
     recipeListContainer.appendChild(recipeElement);
   }
 

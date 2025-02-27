@@ -1,0 +1,19 @@
+.no-image {
+    width: 483px;
+    height: 300px;
+    background-color: lightgray;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  #recipe-image {
+    width: 483px;
+    height: 300px;
+    object-fit: cover; /* 画像の縦横比を維持して指定したサイズに合わせる */
+    display: block; /* 不要な余白をなくす */
+  }
+    
