@@ -1,67 +1,78 @@
 ﻿<!DOCTYPE html>
 <html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/mainstyle.css" />
+    <link rel="stylesheet" href="css/recipepage.css" />
+    <title>レシピ詳細</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/mainstyle.css">
-  <link rel="stylesheet" href="css/recipepage.css">
-  <title>レシピ詳細</title>
-</head>
+  <body>
+    <header>
+      <h1>
+        <a href="/index.html"
+          ><img src="images/visual/logo.png" alt="cookingfor" id="top"
+        /></a>
+      </h1>
+      <p>クキンフォーでお買い物革命！</p>
+      <form id="search-form" action="search_results.html" method="get">
+        <input
+          type="text"
+          id="search-box"
+          name="q"
+          placeholder="レシピを検索..."
+          required
+        />
+        <button type="submit">検索</button>
+      </form>
+    </header>
 
-<body>
-  <header>
-    <h1><a href="/index.html"><img src="images/visual/logo.png" alt="cookingfor" id="top"></a></h1>
-    <p>クキンフォーでお買い物革命！</p>
-    <form id="search-form" action="search_results.html" method="get">
-      <input type="text" id="search-box" name="q" placeholder="レシピを検索..." required>
-      <button type="submit">検索</button>
-    </form>
-  </header>
-
-  <div id="pan">
-    <ul>
-      <li><a href="/index.html">HOME</a></li>
-      <li><a href="recipelist.html">レシピ一覧</a></li>
-      <li>レシピ詳細</li>
-    </ul>
-  </div>
-
-  <div id="contents">
-    <div id="main">
-      <article>
-        <div id="recipe-details">
-          <h2 id="recipe-name">レシピ名</h2>
-          <img id="recipe-image" src="" alt="レシピ画像" class="recipe-image" />
-          
-          <!-- 材料セクション -->
-          <div id="recipe-ingredients-section">
-            <h3>材料</h3>
-            <ul id="recipe-ingredients">
-              <!-- 材料がここに表示されます -->
-            </ul>
-          </div>
-
-          <!-- 工程セクション -->
-          <div id="recipe-steps-section">
-            <h3>工程</h3>
-            <ul id="recipe-steps">
-              <!-- 工程がここに表示されます -->
-            </ul>
-          </div>
-
-          <p id="recipe-description">レシピの詳細説明がありません</p>
-        </div>
-      </article>
+    <div id="pan">
+      <ul>
+        <li><a href="/index.html">HOME</a></li>
+        <li><a href="recipelist.html">レシピ一覧</a></li>
+        <li>レシピ詳細</li>
+      </ul>
     </div>
-  </div>
 
-  <footer>
-    <p>&copy; 2025 クキンフォー All rights reserved.</p>
-    <a href="#top" id="top-link">▲topに戻る</a>
-  </footer>
+    <div id="contents">
+      <div id="main">
+        <article>
+          <div id="recipe-details">
+            <h2 id="recipe-name">レシピ名</h2>
+            <img
+              id="recipe-image"
+              src=""
+              alt="レシピ画像"
+              class="recipe-image"
+            />
 
-  <script src="js/recipepage.js"></script>
-</body>
+            <!-- 材料セクション -->
+            <div id="recipe-ingredients-section">
+              <h3>材料</h3>
+              <ul id="recipe-ingredients">
+                <!-- 材料がここに表示されます -->
+              </ul>
+            </div>
 
+            <!-- 工程セクション -->
+            <div id="recipe-steps-section">
+              <h3>工程</h3>
+              <ol id="recipe-steps">
+                <!-- 工程がここに表示されます -->
+              </ol>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2025 クキンフォー All rights reserved.</p>
+      <a href="#top" id="top-link">▲topに戻る</a>
+    </footer>
+
+    <script src="js/recipepage.js"></script>
+  </body>
 </html>

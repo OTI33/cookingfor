@@ -58,7 +58,7 @@ app.get("/fetch-sheets-data", async (req, res) => {
     // インデックスを降順に振りなおす
     const recipesWithNewIndex = recipes.map((recipe, index) => ({
       ...recipe,
-      newIndex: recipes.length - 1 - index,  // 降順でインデックスを付与
+      newIndex: recipes.length - 1 - index, // 降順でインデックスを付与
     }));
 
     res.json(recipesWithNewIndex);
@@ -113,23 +113,24 @@ app.get("/get-recipe/:recipeIndex", async (req, res) => {
     // 材料データの構築
     const materials = [];
     for (let i = 1; i <= 30; i++) {
-      const materialName = recipeData[3 + (i - 1) * 6]; // 例: materialname1 の位置
-      const hon = recipeData[4 + (i - 1) * 6];          // 例: hon1 の位置
-      const eq2n = recipeData[5 + (i - 1) * 6];         // 例: eq2n1 の位置
-      const eq3n = recipeData[6 + (i - 1) * 6];         // 例: eq3n1 の位置
-      const eq4n = recipeData[7 + (i - 1) * 6];         // 例: eq4n1 の位置
-      const guramu = recipeData[8 + (i - 1) * 6];       // 例: guramu1 の位置
-      const ko = recipeData[9 + (i - 1) * 6];           // 例: ko1 の位置
+      const materialName = recipeData[4 + (i - 1) * 7]; // materialname1 の位置
+      const hon = recipeData[5 + (i - 1) * 7]; // hon1 の位置
+      const eq2n = recipeData[6 + (i - 1) * 7]; // eq2n1 の位置
+      const eq3n = recipeData[7 + (i - 1) * 7]; // eq3n1 の位置
+      const eq4n = recipeData[8 + (i - 1) * 7]; // eq4n1 の位置
+      const guramu = recipeData[9 + (i - 1) * 7]; // guramu1 の位置
+      const ko = recipeData[10 + (i - 1) * 7]; // ko1 の位置
 
-      if (materialName && materialName !== "0") {
+      if (materialName) {
+        // `0` でもそのまま受け取る
         materials.push({
           materialname: materialName,
-          hon: hon !== "0" ? hon : null,
-          eq2n: eq2n !== "0" ? eq2n : null,
-          eq3n: eq3n !== "0" ? eq3n : null,
-          eq4n: eq4n !== "0" ? eq4n : null,
-          guramu: guramu !== "0" ? guramu : null,
-          ko: ko !== "0" ? ko : null,
+          hon: hon,
+          eq2n: eq2n,
+          eq3n: eq3n,
+          eq4n: eq4n,
+          guramu: guramu,
+          ko: ko,
         });
       }
     }
@@ -137,13 +138,14 @@ app.get("/get-recipe/:recipeIndex", async (req, res) => {
     // 工程データの構築
     const steps = [];
     for (let i = 1; i <= 30; i++) {
-      const itinerary = recipeData[183 + (i - 1) * 2]; // 例: itineraryn1 の位置
-      const stepImage = recipeData[184 + (i - 1) * 2]; // 例: stepimage1 の位置
+      const itinerary = recipeData[214 + (i - 1) * 2]; // itineraryn1 の位置
+      const stepImage = recipeData[215 + (i - 1) * 2]; // stepimage1 の位置
 
-      if (itinerary && itinerary !== "0") {
+      if (itinerary || stepImage) {
+        // itinerarynまたはstepimageがあれば
         steps.push({
-          itineraryn: itinerary,
-          stepimage: stepImage !== "0" ? stepImage : null,
+          itineraryn: itinerary, // 正しい順番で入れ子に
+          stepimage: stepImage,
         });
       }
     }
