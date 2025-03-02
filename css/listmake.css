@@ -1,0 +1,85 @@
+#contents {
+  margin: 0 280px;
+}
+
+h2 {
+  margin: 50px 0 50px 45px;
+  font-size: 30px;
+}
+
+/* レシピリスト */
+#recipe-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  background-color: #f7f7f7;
+  border-radius: 5px;
+}
+
+/* レシピアイテム */
+.recipe-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 5px; /* レシピ名同士の隙間 */
+}
+
+/* メニュー名と削除ボタン */
+.recipe-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.5em; /* 行間調整 */
+}
+
+/* 削除ボタン */
+.delete-button {
+  background-color: #e24f35;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #e24f35;
+}
+
+/* お買い物リスト */
+#recipe-ingredients {
+  list-style-type: disc; /* リストスタイルをディスク（丸）に */
+  padding-left: 20px; /* 左側にインデント */
+  margin: 0 0 50px 0;
+}
+
+#recipe-ingredients li {
+  padding: 8px 10px; /* リストアイテムの内側の余白 */
+  background-color: #fff;
+  border-radius: 5px;
+  margin-bottom: 8px;
+  font-size: 1rem;
+  color: #555;
+  border: 1px solid #ddd; /* リストアイテムの境界線 */
+  transition: background-color 0.3s ease;
+}
+
+#recipe-ingredients li:hover {
+  background-color: #f1f1f1;
+}
+
+/* リストが空の場合のメッセージ */
+#no-recipes-message {
+  font-size: 1rem;
+  color: #777;
+  text-align: center;
+  padding: 10px;
+}

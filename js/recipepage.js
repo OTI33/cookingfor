@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
     noImageText.classList.add("show"); // no-imageを表示
   }
 
-  // 材料の表示処理
+  // 材料を表示する関数
   function displayMaterials(materials) {
     const materialsElement = document.getElementById("recipe-ingredients");
     materialsElement.innerHTML = ""; // 既存の内容をクリア
@@ -42,6 +42,9 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("材料データがありません");
       return;
     }
+
+    // 画面に表示する材料情報を格納する配列
+    const displayedMaterials = [];
 
     materials.forEach((material) => {
       // 材料の値が0または空であれば表示しない
@@ -75,7 +78,13 @@ document.addEventListener("DOMContentLoaded", function () {
       const listItem = document.createElement("li");
       listItem.textContent = materialText;
       materialsElement.appendChild(listItem);
+
+      // 表示された材料を表示配列に追加
+      displayedMaterials.push(material);
     });
+
+    // 表示された材料情報を返す（後でリストに追加用などで使用）
+    return displayedMaterials;
   }
 
   // 工程の表示処理
@@ -113,25 +122,40 @@ document.addEventListener("DOMContentLoaded", function () {
   fetch(`/get-recipe/${recipeIndex}`)
     .then((response) => response.json())
     .then((data) => {
-      console.log("Received data:", data); // 受け取ったデータをコンソールに表示
+      console.log("Received data:", data);
 
       const recipeNameElement = document.getElementById("recipe-name");
-      const recipeImageElement = document.getElementById("recipe-image");
       const recipeName = data.recipename;
-      const recipeImage = data.recipeimage;
-
       recipeNameElement.textContent = recipeName;
-      recipeImageElement.src = recipeImage
-        ? convertGoogleDriveUrl(recipeImage)
-        : "";
 
-      // 画像がない場合は「No Image」を表示
-      if (!recipeImage) {
-        handleNoImage(recipeImageElement);
+      // 画像の表示処理
+      const recipeImage = document.getElementById("recipe-image");
+      const imageUrl = convertGoogleDriveUrl(data.recipeimage);
+      if (imageUrl) {
+        recipeImage.src = imageUrl;
+      } else {
+        handleNoImage(recipeImage);
       }
 
-      displayMaterials(data.materials);
+      // 表示された材料だけを取得
+      const displayedMaterials = displayMaterials(data.materials);
       displaySteps(data.steps);
+
+      // 「リストに追加」ボタンの処理
+      const addToListButton = document.getElementById("add-to-list");
+
+      addToListButton.addEventListener("click", function () {
+        let recipeList = JSON.parse(localStorage.getItem("recipeList")) || [];
+
+        recipeList.push({
+          name: recipeName,
+          ingredients: displayedMaterials, // 表示された材料のみ追加
+        });
+
+        localStorage.setItem("recipeList", JSON.stringify(recipeList));
+
+        alert("リストに追加しました！");
+      });
     })
     .catch((error) => {
       console.error("Error fetching recipe:", error);
