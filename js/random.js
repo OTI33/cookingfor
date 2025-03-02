@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
     fetch("/fetch-sheets-data")
       .then((response) => response.json())
       .then((data) => {
-        const randomRecipes = getRandomRecipes(data, 5); // ランダムに5つのレシピを取得
+        const randomRecipes = getRandomRecipes(data, 8); // ランダムに8つのレシピを取得
 
         randomRecipeContainer.innerHTML = ""; // 既存の内容をクリア
 
